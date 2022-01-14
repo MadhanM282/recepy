@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/auth.css">
+    <title>Document</title>
+    
+</head>
+<body>
+    <div class="main">
+        <h2>Welcome to Zomato</h2>
+        <h2>Please Register For Enjoying The Food Around You</h2>
+    </div>
+    <div class="main-form">
+        <form onsubmit="reg()">
+            <input type="text" id="name" placeholder="Enter Name" />
+            <input type="email" id="mail" placeholder="Enter example..@gmail.com" />
+            <input type="text" id="userId" placeholder="User Id" />
+            <input type="password" id="pass" placeholder="Password" />
+            <input type="number" id="mobile" placeholder="Mobile Number" />
+            <input type="text" id="dis" placeholder="Description" />
+            <br>
+            <input id="submit" type="submit"/>
+        </form>
+    </div>
+    <div class="log">
+        <p>OR</p>
+        <button id="login">Login</button>
+    </div>
+</body>
+</html>
+<script>
+    async function reg() {
+
+            try {
+
+                event.preventDefault();
+
+                var reg_data = {
+                    name: document.querySelector("#name").value,
+                    email: document.querySelector("#mail").value,
+                    password: document.querySelector("#pass").value,
+                    username: document.querySelector("#userId").value,
+                    mobile: document.querySelector("#mobile").value,
+                    description: document.querySelector("#dis").value
+                };
+
+                reg_data = JSON.stringify(reg_data)
+                console.log('reg_data', reg_data);
+
+            }
+
+            catch (e) {
+                console.log('e', e);
+            }
+
+            let regApi = `https://masai-api-mocker.herokuapp.com/auth/register`
+
+            let res = await fetch(regApi, {
+                method: "POST",
+                body: reg_data,
+                headers: {
+                    "Content-Type": 'application/json'
+                },
+
+            });
+
+            let data = await res.json()
+            console.log('data', data);
+            
+            if(data.message = "Registration Success"){
+                window.location.href = "login.html"
+                // console.log(data)
+            }
+            if (data.message === "Registration failed, user already exists") {
+                alert("User Name Already Existed")
+            }
+            // else{
+            //     
+            // }
+
+            
+
+        }
+        let but = document.querySelector("#login");
+        but.addEventListener("click",logpage);
+        function logpage(){
+            window.location.href= "login.html"
+        }
+</script>

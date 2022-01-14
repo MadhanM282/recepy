@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="style/nav.css"> -->
+    <link rel="stylesheet" href="style/auth.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="main">
+        <h2>Welcome to Zomato</h2>
+        <h2>Please Login For Enjoying The Food Around You</h2> 
+    </div>
+    <div class="main-form">
+        <form onsubmit="login(event)">
+            <input type="text" id="username-log" placeholder="userId" />
+            <input type="password" id="password-log" placeholder="password" />
+            <br>
+            <input id="submit" type="submit" />
+        </form>
+    </div>
+</body>
+</html>
+
+<script>
+
+    async function login(e) {
+        setTimeout(function () {
+            alert("Incorrect Login Credentials")
+        }, 3000)
+
+            try{
+                e.preventDefault()
+
+                var data_list = {
+                    username: document.querySelector("#username-log").value,
+                    password: document.querySelector("#password-log").value,
+                };
+
+                data_list = JSON.stringify(data_list);
+            }
+            catch(err){
+            console.log('err', err);
+            }
+            let url = `https://masai-api-mocker.herokuapp.com/auth/login`
+                                                                                    
+            let responce = await fetch(url, {
+                method: 'POST',
+                body: data_list,
+                headers: {
+                    "Content-Type": 'application/json',
+                },
+
+            })
+
+            let info = await responce.json()
+
+            let token = info.token;
+
+            let username = document.querySelector("#username-log").value
+
+
+            window.location.href="nav.html"
+            
+
+        }
+
+</script>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/nav.css">
+    <title>Document</title>
+    
+</head>
+<body>
+    <div class="main">
+        
+    </div>
+    <div class="body">
+
+    </div>
+</body>
+</html>
+<script type="module">
+    import nav from "./components/nav.js"
+
+    import {searching,appending} from "./script/results.js"
+
+    import  searchingvalue  from "./script/bouncer.js"
+    
+    let body = document.querySelector(".body");
+
+    let navbar = document.querySelector(".main")
+
+    navbar.innerHTML = nav()
+
+    // Nav bar Done---->
+
+    let bodydata = await searching()
+
+    appending(bodydata, body)
+
+    // appending display ---->
+
+    let input = document.querySelector("#input")
+
+    async function recipy(){
+        let res = await fetch(`https://www.themealdb.com/api/json/v1/1/random.php`)
+        let data = await res.json()
+        console.log('data', data);
+
+        localStorage.setItem("random",JSON.stringify(data.meals));
+
+        setTimeout(function(){
+            window.location.href="day.html"
+        },1000)
+        
+    }
+
+
+
+    let day = document.querySelector("#day");
+    day.addEventListener("click",recipy);
+
+
+
+    let id;
+
+
+    let bounce = async () => {
+            if (id) {
+                clearInterval()
+            }
+            id = setTimeout(function () {
+                let value = input.value
+                searchingvalue(`https://www.themealdb.com/api/json/v1/1/search.php?s=${value}`, small)
+            }, 2000)
+        }
+
+    input.addEventListener("input",bounce);
+
+    let small = document.querySelector("#values")
+    
+
+
+    
+
+    
+
+   
+</script>

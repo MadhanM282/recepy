@@ -1,0 +1,56 @@
+body{
+    background: black;
+                font-family: cursive;
+
+}
+.main-form{
+    margin: auto;
+    margin-top: 30px;
+
+}
+form{
+    width: 300px;
+    margin: auto;
+
+}
+input{
+    width: 300px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    font-size: 20px;
+    padding:10px;
+                font-family: cursive;
+
+}
+#submit{
+    border: 0px;
+    background-color: rgb(255, 153, 0);
+    padding: 10px 30px;
+    margin-left: 13px;
+    font-weight: bold;
+    /* width: 100px; */
+}
+.main{
+    color: rgb(255,153,0);
+    margin: auto;
+    width: fit-content;
+    text-align: center;
+}
+.log{
+    width: fit-content;
+    margin: auto;
+    color: white;
+    text-align: center;
+    line-height: 10px;
+    
+}
+#login{
+    border: 0px;
+    background-color: rgb(255, 153, 0);
+    padding: 10px 30px;
+    margin-left: 13px;
+    font-weight: bold;
+    border-radius: 10px;
+    font-family: cursive;
+
+}
